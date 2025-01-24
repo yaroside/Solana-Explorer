@@ -1,0 +1,240 @@
+.dex__screener {
+	margin: 3em 4.5em 0 4.5em;
+}
+
+.dex__screener-header {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.dex__screener-title {
+	color: white;
+}
+
+.dex__screener-list {
+	color: aliceblue;
+}
+
+.dex__screener-list-finance {
+	display: flex;
+	align-items: flex-start;
+	column-gap: 3em;
+	margin-top: 2em;
+}
+
+.dex__screener-list-finance-txns {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1em;
+	width: 25%;
+}
+
+.txns__title,
+.volume__title,
+.priceChange__title,
+.priceChange__mkt,
+.liquidity__mtk {
+	font-size: 1.5em;
+	font-weight: 600;
+}
+
+.txnsTitle {
+	font-size: 1em;
+}
+
+.txns__5min-numbers,
+.txns__h1-numbers,
+.txns__h6-numbers,
+.txns__h24-numbers {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.txns__5min-sells {
+	text-align: end;
+}
+
+.buys span,
+.sells span {
+	font-size: 1.2em;
+}
+
+.buys--active {
+	box-shadow: 0 0 20px rgb(10, 233, 88, 0.6);
+}
+
+.sells--active {
+	box-shadow: 0 0 20px rgb(241, 26, 30, 0.6);
+}
+
+.txns__5min,
+.txns__h1,
+.txns__h6,
+.txns__h24 {
+	text-align: center;
+}
+
+.txns__5min-progressbar-buys,
+.txns__5min-progressbar-sells,
+.txns__h1-progressbar-buys,
+.txns__h1-progressbar-sells,
+.txns__h6-progressbar-buys,
+.txns__h6-progressbar-sells,
+.txns__h24-progressbar-buys,
+.txns__h24-progressbar-sells {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.dex__screener-list-finance-volume {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1em;
+	width: 33%;
+}
+
+.volume__5min-progressbar,
+.volume__h1-progressbar,
+.volume__h6-progressbar,
+.volume__h24-progressbar {
+	display: flex;
+}
+
+.volume__5min-progressbar-buys,
+.volume__5min-progressbar-sells,
+.volume__h1-progressbar-buys,
+.volume__h1-progressbar-sells,
+.volume__h6-progressbar-buys,
+.volume__h6-progressbar-sells,
+.volume__h24-progressbar-buys,
+.volume__h24-progressbar-sells {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.priceChange__title {
+	margin-bottom: 0.5em;
+}
+
+.priceChange-5m,
+.priceChange-h1,
+.priceChange-h6,
+.priceChange-h24 {
+	font-size: 1.2em;
+	margin-top: 1em;
+}
+
+.priceChange-5m span,
+.priceChange-h1 span,
+.priceChange-h6 span,
+.priceChange-h24 span {
+	font-weight: 600;
+}
+
+.liquidity__mtk,
+.priceChange__title {
+	margin-top: 2.5em;
+}
+
+.priceChange__mkt span {
+	margin-right: 0.5em;
+}
+
+.priceChange-5m span,
+.priceChange-h1 span,
+.priceChange-h6 span,
+.priceChange-h24 span {
+	color: aliceblue !important;
+}
+
+.changePrice__positive {
+	color: greenyellow;
+}
+
+.changePrice__negative {
+	color: rgb(219, 24, 2);
+}
+
+.changePrice__neutral {
+	color: aliceblue;
+}
+
+.dex__screener-list-main.cosmic-theme {
+	background: transparent;
+	border: 1px solid #4d4d4d;
+	border-radius: 12px;
+	padding: 20px;
+	max-width: 400px;
+	margin-block: 20px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+	color: #dcdcdc;
+	font-size: 16px;
+	list-style: none;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.dex__screener-list-main.cosmic-theme li {
+	margin: 10px 0;
+	padding: 12px;
+	background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+	border-radius: 8px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	transition: background 0.3s ease, transform 0.3s ease;
+	color: #bfbfbf;
+	cursor: pointer;
+}
+
+.dex__screener-list-main.cosmic-theme li:hover {
+	background: linear-gradient(135deg, #333333, #4d4d4d);
+	transform: scale(1.02);
+}
+
+.dex__screener-list-main.cosmic-theme .label {
+	font-weight: bold;
+	color: #c0c0c0;
+	margin-right: 8px;
+	text-transform: uppercase;
+}
+
+.dex__screener-list-main-address {
+	color: #dcdcdc;
+	font-size: 14px;
+	word-wrap: break-word;
+	cursor: pointer;
+}
+
+.dex__screener-list-main-address:active {
+	color: #ffffff;
+	background: linear-gradient(135deg, #4d4d4d, #606060);
+}
+
+.dex__screener-list-main li:hover::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle, rgba(242, 242, 242, 0.2), transparent);
+	border-radius: 8px;
+	pointer-events: none;
+	transition: opacity 0.3s ease-in-out;
+	opacity: 1;
+}
+
+.copy__icon {
+	width: 24px;
+	height: 24px;
+}
+
+.token__address {
+	display: flex;
+	align-items: center;
+	column-gap: 0.5em;
+}

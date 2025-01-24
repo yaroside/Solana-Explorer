@@ -1,0 +1,242 @@
+.form__component {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1em;
+}
+
+.explorer__title {
+	position: relative;
+	color: whitesmoke;
+}
+
+.explorer__title-chainName {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Ga Maamli', serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.25em;
+	color: black;
+	background-color: rgb(216, 219, 174);
+	width: 7.5em;
+	padding-inline: 2em;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+	transition: background-color 1s ease-in-out, color 1s ease-in-out;
+	cursor: pointer;
+}
+
+.explorer__title-chainName:hover {
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+}
+
+.chains__params {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	margin-top: 2em;
+	transform-style: preserve-3d;
+	transition: transform 0.5s ease-in-out;
+}
+
+.chain__choose {
+	position: relative;
+}
+
+.chain__selected {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	height: 3em;
+	font-size: 1.25em;
+	cursor: pointer;
+	background-color: #212121;
+	color: #ffffff;
+	padding: 0.5em 2em 0.5em 1em;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+	width: 12.5em;
+}
+
+.chain__selected-logo {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.chain__selected-name {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 5em;
+}
+
+.chaind__selected-svg {
+	width: 24px;
+	height: 24px;
+}
+
+.other__chains {
+	position: absolute;
+	top: 200%;
+	left: -500%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	row-gap: 1em;
+	background-color: #212121;
+	color: #ffffff;
+	padding: 1em;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+	width: 20em;
+	transition: all 0.3s ease-in-out;
+}
+
+.other__chains--active {
+	top: 200%;
+	left: 0;
+}
+
+.chain__item {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 1em;
+	font-size: 1.05em;
+	font-weight: 500;
+	min-width: 5em;
+	padding: 0.5em 2em 0.5em 1em;
+	border-radius: 10px;
+	background-color: #212121;
+	color: #ffffff;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+	width: 15em;
+	transition: all 0.5s ease-in-out;
+	cursor: pointer;
+}
+
+.chain__item.Ethereum:hover {
+	background-color: #1a1a1a;
+	transform: scale(1.01);
+	box-shadow: 0 0 10px rgba(43, 189, 226, 0.8), 0 0 20px rgba(61, 118, 139, 0.6),
+		0 0 40px rgba(255, 255, 255, 0.3);
+}
+.chain__item.Solana:hover {
+	background-color: #1a1a1a;
+	transform: scale(1.01);
+	box-shadow: 0 0 10px rgba(138, 43, 226, 0.8), 0 0 20px rgba(72, 61, 139, 0.6),
+		0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.chain__item::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 10px;
+	background: linear-gradient(
+		145deg,
+		rgba(255, 255, 255, 0.2),
+		rgba(72, 61, 139, 0.2)
+	);
+	filter: blur(10px);
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out;
+	z-index: -1;
+}
+
+.chain__item:hover::before {
+	opacity: 1;
+}
+
+.chain__item span {
+	font-size: 1.2em;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	transition: color 0.3s ease;
+}
+
+.chain__item.Ethereum:hover span {
+	color: #87ceeb;
+}
+.chain__item.Solana:hover span {
+	color: #8a58e5;
+}
+
+.chain__item img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.chain__item span {
+	display: inline-block;
+	width: 5em;
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.chain__form-adress {
+	width: 27.5em;
+	height: 3.5em;
+	outline: none;
+	border: 1px solid black;
+	border-radius: 10px;
+	font-size: 1em;
+	background-color: #212121;
+	color: #ffffff;
+	padding: 1em;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.chain__form-btn {
+	position: relative;
+	width: 10em;
+	height: 2.75em;
+	font-size: 1.25em;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	background-color: #212121;
+	color: #ffffff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+	margin-left: 1em;
+	cursor: pointer;
+	overflow: hidden;
+	transition: background-color 0.3s ease;
+}
+
+.chain__form-btn::after {
+	content: url(../images/arrow-up-right-from-square.svg);
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 50%;
+	right: -100%;
+	transform: translate(0, -50%);
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+}
+
+.chain__form-btn:hover::after {
+	opacity: 1;
+	right: 15%;
+}
+
+.chain__form-btn:hover::before {
+	opacity: 1;
+}
+
+.chain__form-btn:hover {
+	background-color: #262525;
+}
