@@ -15,4 +15,20 @@ export const chainsData = [
 		placeholder: '0x22...1A7E',
 		blockchain: 'ethereum',
 	},
+	{
+		id: 3,
+		name: 'Ethereum',
+		imgUrl: `./src/images/ethereum.webp`,
+		altImg: 'Ethereum logo',
+		placeholder: '0x22...1A7E',
+		blockchain: 'ethereum',
+	},
+	{
+		id: 4,
+		name: 'Ethereum',
+		imgUrl: `./src/images/ethereum.webp`,
+		altImg: 'Ethereum logo',
+		placeholder: '0x22...1A7E',
+		blockchain: 'ethereum',
+	},
 ]

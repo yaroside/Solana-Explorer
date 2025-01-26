@@ -82,24 +82,22 @@
 
 .other__chains {
 	position: absolute;
-	top: 200%;
+	z-index: 999;
 	left: -500%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
 	row-gap: 1em;
-	background-color: #212121;
+	background-color: #161515;
 	color: #ffffff;
 	padding: 1em;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-	width: 20em;
 	transition: all 0.3s ease-in-out;
 }
 
 .other__chains--active {
-	top: 200%;
 	left: 0;
 }
 
@@ -185,7 +183,7 @@
 }
 
 .chain__form-adress {
-	width: 27.5em;
+	width: 30em;
 	height: 3.5em;
 	outline: none;
 	border: 1px solid black;

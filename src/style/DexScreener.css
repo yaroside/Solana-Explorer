@@ -1,4 +1,5 @@
 .dex__screener {
+	display: inline-block;
 	margin: 3em 4.5em 0 4.5em;
 }
 
@@ -8,19 +9,95 @@
 	column-gap: 1em;
 }
 
+.dex__screener-result {
+	margin-top: 2em;
+}
+
 .dex__screener-title {
 	color: white;
 }
 
 .dex__screener-list {
+	display: flex;
+	align-items: center;
+	column-gap: 3em;
 	color: aliceblue;
+}
+
+.dex__screener-list-main__block,
+.dex__screener-list-finance {
+	height: inherit;
+}
+
+.dex__screener-list-main__left,
+.dex__screener-list-main__right {
+	min-width: 48%;
 }
 
 .dex__screener-list-finance {
 	display: flex;
-	align-items: flex-start;
-	column-gap: 3em;
-	margin-top: 2em;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 45%;
+}
+
+.finance__tabs {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: linear-gradient(135deg, #2e2e34, #3d3d45, #4a4a55);
+	border-radius: 40px;
+	box-shadow: 0 0 20px rgba(128, 128, 128, 0.25),
+		inset 0 0 15px rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.finance__tab {
+	position: relative;
+	flex-basis: 50%;
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: 700;
+	color: #dcdcdc;
+	z-index: 2;
+	background: transparent;
+	cursor: pointer;
+	padding: 0.5em 1em;
+	transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.finance__tab:hover {
+	color: #a09bf5;
+}
+
+.finance__tab.active {
+	color: #a09bf5;
+	text-shadow: 0 0 12px rgba(160, 155, 245, 1);
+}
+
+.finance__tabs::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	height: 100%;
+	width: 50%;
+	background: linear-gradient(135deg, #7c7c91, #54546f);
+	box-shadow: 0 0 20px rgba(128, 128, 192, 0.5), 0 0 30px rgba(64, 64, 96, 0.6);
+	border-radius: 30px;
+	transition: all 0.3s ease-in-out;
+	z-index: 1;
+	filter: blur(1px);
+	opacity: 0.9;
+}
+
+.finance__tabs[data-selected-tab='TXNS']::after {
+	transform: translateX(0);
+}
+
+.finance__tabs[data-selected-tab='Volume']::after {
+	transform: translateX(100%);
 }
 
 .dex__screener-list-finance-txns {
@@ -76,6 +153,17 @@
 	text-align: center;
 }
 
+.txns__5min-block,
+.txns__h1-block,
+.txns__h6-block,
+.txns__h24-block,
+.volume__5min-block,
+.volume__h1-block,
+.volume__h6-block,
+.volume__h24-block {
+	margin-top: 1.5em;
+}
+
 .txns__5min-progressbar-buys,
 .txns__5min-progressbar-sells,
 .txns__h1-progressbar-buys,
@@ -89,11 +177,90 @@
 	justify-content: center;
 }
 
-.dex__screener-list-finance-volume {
+.dex__screener-list-main-priceChange-text {
 	display: flex;
-	flex-direction: column;
-	row-gap: 1em;
-	width: 33%;
+	align-items: center;
+	font-size: 1.1em;
+}
+
+.priceChange__title {
+	display: inline-block;
+	font-size: 1.2em;
+	color: #edeef1;
+	margin-block: 1em;
+	text-transform: uppercase;
+}
+
+.price {
+	display: inline-block;
+	transition: all 0.3s ease-in-out;
+	font-size: 1.2em;
+	margin-left: 1em;
+}
+
+.price-up {
+	color: green;
+}
+
+.price-down {
+	color: red;
+}
+
+.dex__screener-list-finance-priceChange {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	column-gap: 1em;
+	border-radius: 12px;
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5),
+		inset 0px 4px 6px rgba(255, 255, 255, 0.05);
+	color: #b9bfc9;
+	width: 100%;
+}
+
+.dex__screener-list-finance-priceChange li {
+	min-width: 48%;
+	max-width: 48%;
+	padding: 12px;
+	margin: 8px 0;
+	border-radius: 8px;
+	background: transparent;
+	color: #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: black;
+	transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.dex__screener-list-finance-priceChange li:hover {
+	transform: scale(1.02);
+}
+
+.priceChange-positive {
+	background: linear-gradient(145deg, #1f4021, #2a5a2f);
+	box-shadow: 0px 8px 20px rgba(0, 255, 100, 0.5);
+}
+
+.priceChange-negative {
+	background: linear-gradient(145deg, #401f1f, #5a2f2f);
+	box-shadow: 0px 8px 20px rgba(255, 50, 50, 0.5);
+}
+
+.priceChange-neutral {
+	background: transparent;
+	box-shadow: none;
+}
+
+.volume__5min-text,
+.volume__h1-text,
+.volume__h6-text,
+.volume__h24-text {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 48px;
 }
 
 .volume__5min-progressbar,
@@ -116,16 +283,14 @@
 	justify-content: center;
 }
 
-.priceChange__title {
-	margin-bottom: 0.5em;
-}
-
 .priceChange-5m,
 .priceChange-h1,
 .priceChange-h6,
 .priceChange-h24 {
 	font-size: 1.2em;
-	margin-top: 1em;
+	width: 175px;
+	margin-block: 0.5em;
+	transition: all 0.3s ease-in-out;
 }
 
 .priceChange-5m span,
@@ -133,11 +298,6 @@
 .priceChange-h6 span,
 .priceChange-h24 span {
 	font-weight: 600;
-}
-
-.liquidity__mtk,
-.priceChange__title {
-	margin-top: 2.5em;
 }
 
 .priceChange__mkt span {
@@ -163,17 +323,22 @@
 	color: aliceblue;
 }
 
-.dex__screener-list-main.cosmic-theme {
-	background: transparent;
+.dex__screener-list-main__block {
 	border: 1px solid #4d4d4d;
 	border-radius: 12px;
 	padding: 20px;
-	max-width: 400px;
-	margin-block: 20px;
 	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 	color: #dcdcdc;
 	font-size: 16px;
-	list-style: none;
+	background: transparent;
+}
+
+.dex__screener-list-main.cosmic-theme {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: 1em;
+	width: 100%;
 	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -190,9 +355,20 @@
 	cursor: pointer;
 }
 
+.dex__screener-list-main.cosmic-theme li span:first-child {
+	display: inline-block;
+	margin-right: auto;
+}
+
 .dex__screener-list-main.cosmic-theme li:hover {
 	background: linear-gradient(135deg, #333333, #4d4d4d);
 	transform: scale(1.02);
+}
+
+.dex__screener-list-main-name {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .dex__screener-list-main.cosmic-theme .label {
@@ -200,6 +376,10 @@
 	color: #c0c0c0;
 	margin-right: 8px;
 	text-transform: uppercase;
+}
+
+.tokenName {
+	text-align: end;
 }
 
 .dex__screener-list-main-address {
@@ -212,6 +392,15 @@
 .dex__screener-list-main-address:active {
 	color: #ffffff;
 	background: linear-gradient(135deg, #4d4d4d, #606060);
+}
+
+.social__twitter-link,
+.social__telegram-link,
+.social__Website-link,
+.social__discord-link,
+.dexscreener__link {
+	display: flex;
+	align-items: center;
 }
 
 .dex__screener-list-main li:hover::before {

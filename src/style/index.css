@@ -11,7 +11,7 @@ body {
 	overflow-x: hidden;
 }
 
-.main video {
+.video {
 	position: absolute;
 	z-index: -1;
 	top: 0;
@@ -25,4 +25,9 @@ body {
 ul,
 ol {
 	list-style-type: none;
+}
+
+button {
+	border: 0;
+	outline: 0;
 }

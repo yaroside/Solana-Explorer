@@ -7,7 +7,7 @@ import arrowUp from '../../images/arrow_up.svg'
 export default function Form({ setRequestData, setRequestParams }) {
 	const [chain, setChain] = useState(chainsData[0])
 	const [menu, setMenu] = useState(false)
-	const [contract, setContract] = useState('')
+	const [contract, setContract] = useState(null)
 
 	const toggleMenu = () => {
 		const menu = document.querySelector('.other__chains')

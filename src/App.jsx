@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import video from './video/background-video.mp4'
+
+import BackgroundVideo from './Components/BackgroundVideo'
 import Header from './Components/Header'
 import Form from './Components/Form/Form'
 import DexScreener from './Components/DexScreener'
@@ -12,7 +13,7 @@ export default function App() {
 
 	return (
 		<main className='main'>
-			<video src={video} autoPlay loop muted></video>
+			<BackgroundVideo />
 			<Header />
 			<Form
 				setRequestData={setRequestData}
