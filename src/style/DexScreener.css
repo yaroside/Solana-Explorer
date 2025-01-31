@@ -13,10 +13,6 @@
 	margin-top: 2em;
 }
 
-.dex__screener-title {
-	color: white;
-}
-
 .dex__screener-list {
 	display: flex;
 	align-items: center;

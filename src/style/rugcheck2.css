@@ -1,0 +1,113 @@
+.additional__info-list {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1em;
+}
+
+.additional__info-item {
+	background: rgba(27, 16, 44, 0.8);
+	border: 2px solid #00ffccbc;
+	padding: 15px;
+	border-radius: 10px;
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+	position: relative;
+}
+
+.additional__info-item-checkList:nth-child(1),
+.additional__info-item-checkList:nth-child(2) {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	flex-basis: 10%;
+}
+
+.additional__info-item-checkList:nth-child(3) {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	flex-basis: 100%;
+}
+
+.additional__info-item:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+.additional__info-text {
+	font-size: 18px;
+	position: relative;
+}
+
+.additional__info-text {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.additional__info-text span:first-child {
+	font-size: 1.25em;
+	font-weight: bold;
+	color: #32cd32;
+}
+
+.addition__info-snipersSupply,
+.addition__info-snipersList {
+	font-weight: bold;
+	color: #ffc800;
+	font-size: 1.25em;
+}
+
+.dev__walletAddress {
+	color: #ffc800;
+	font-size: 1.25em;
+	font-weight: bold;
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+.copy__icon {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
+}
+
+.copy__icon.animate__icon {
+	animation: scaleAnimation 0.3s ease-in-out;
+}
+
+@keyframes scaleAnimation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+img[src$='check'] {
+	filter: drop-shadow(0 0 5px #32cd32);
+}
+
+img[src$='xmark'] {
+	filter: drop-shadow(0 0 5px #ff4d4d);
+}
+
+.burned__liquidity--progressbar {
+	width: 100%;
+	height: 20px;
+	background: #222;
+	border-radius: 10px;
+	overflow: hidden;
+	margin-top: 5px;
+}
+
+.burned__liquidity--burned {
+	height: 100%;
+	background: linear-gradient(to right, #00ff0090, #95ff009d);
+	transition: width 0.5s ease-in-out;
+	text-align: center;
+}

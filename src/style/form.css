@@ -37,6 +37,7 @@
 .chains__params {
 	display: flex;
 	align-items: center;
+	width: 75%;
 	column-gap: 1em;
 	margin-top: 2em;
 	transform-style: preserve-3d;
@@ -44,6 +45,8 @@
 }
 
 .chain__choose {
+	flex-basis: 15%;
+	flex-grow: 1;
 	position: relative;
 }
 
@@ -59,7 +62,6 @@
 	padding: 0.5em 2em 0.5em 1em;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-	width: 12.5em;
 }
 
 .chain__selected-logo {
@@ -83,21 +85,24 @@
 .other__chains {
 	position: absolute;
 	z-index: 999;
-	left: -500%;
+	top: -1000%;
+	left: 0;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
-	row-gap: 1em;
+	row-gap: 2em;
+	padding: 1em;
 	background-color: #161515;
 	color: #ffffff;
-	padding: 1em;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 	transition: all 0.3s ease-in-out;
 }
 
 .other__chains--active {
+	top: 125%;
 	left: 0;
 }
 
@@ -105,17 +110,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	column-gap: 1em;
-	font-size: 1.05em;
+	width: calc(80% + 40px);
+	padding-block: 0.5em;
+	font-size: 1em;
 	font-weight: 500;
-	min-width: 5em;
-	padding: 0.5em 2em 0.5em 1em;
 	border-radius: 10px;
 	background-color: #212121;
 	color: #ffffff;
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-	width: 15em;
-	transition: all 0.5s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	cursor: pointer;
 }
 
@@ -182,8 +185,13 @@
 	font-size: 1.1em;
 }
 
+.chain__form {
+	flex-basis: 50%;
+	flex-grow: 1;
+}
+
 .chain__form-adress {
-	width: 30em;
+	width: 100%;
 	height: 3.5em;
 	outline: none;
 	border: 1px solid black;
@@ -196,9 +204,14 @@
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
+.chain__btn {
+	flex-basis: 25%;
+	flex-grow: 1;
+}
+
 .chain__form-btn {
 	position: relative;
-	width: 10em;
+	width: 100%;
 	height: 2.75em;
 	font-size: 1.25em;
 	border: none;
@@ -208,7 +221,6 @@
 	color: #ffffff;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-	margin-left: 1em;
 	cursor: pointer;
 	overflow: hidden;
 	transition: background-color 0.3s ease;

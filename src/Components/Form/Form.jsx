@@ -68,13 +68,15 @@ export default function Form({ setRequestData, setRequestParams }) {
 							))}
 					</div>
 				</div>
-				<form className='chain__form'>
+				<div className='chain__form'>
 					<input
 						className='chain__form-adress'
 						type='text'
 						placeholder={`Example: ` + chain.placeholder}
 						onChange={e => setContract(e.target.value)}
 					/>
+				</div>
+				<div className='chain__btn'>
 					<button
 						className='chain__form-btn'
 						type='submit'
@@ -82,7 +84,7 @@ export default function Form({ setRequestData, setRequestParams }) {
 					>
 						Explore
 					</button>
-				</form>
+				</div>
 			</div>
 		</section>
 	)

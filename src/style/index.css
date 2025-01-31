@@ -1,13 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 @import './normalize.css';
+@import './app.css';
 @import './form.css';
 @import './header.css';
 @import './DexScreener.css';
+@import './rugcheck.css';
+@import './rugcheck2.css';
 
 body {
-	font-family: 'Space Mono', serif;
-	font-weight: 400;
-	font-style: normal;
+	font-family: 'Orbitron', sans-serif;
+	color: #ffffff;
 	background-color: black;
+	margin: 0;
+	padding: 0;
 	overflow-x: hidden;
 }
 
