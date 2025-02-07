@@ -1,5 +1,5 @@
 // Fetch token largest accounts.
-export const fetchLargestAccounts = (apiHelius, contract) => {
+export const fetchLargestAccounts = (apiHelius, contract, signal) => {
 	return fetch(apiHelius, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -9,11 +9,12 @@ export const fetchLargestAccounts = (apiHelius, contract) => {
 			method: 'getTokenLargestAccounts',
 			params: [contract],
 		}),
+		signal,
 	})
 }
 
 // Fetch token supply.
-export const fetchTokenSupply = (apiHelius, contract) => {
+export const fetchTokenSupply = (apiHelius, contract, signal) => {
 	return fetch(apiHelius, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -23,11 +24,12 @@ export const fetchTokenSupply = (apiHelius, contract) => {
 			method: 'getTokenSupply',
 			params: [contract],
 		}),
+		signal,
 	})
 }
 
 // Fetch Account Info for searching token on acc
-export const fetchLimitedAccount = (urlHelius, address) => {
+export const fetchLimitedAccount = (urlHelius, address, signal) => {
 	return fetch(urlHelius, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -37,22 +39,24 @@ export const fetchLimitedAccount = (urlHelius, address) => {
 			method: 'getAccountInfo',
 			params: [address, { encoding: 'jsonParsed' }],
 		}),
+		signal,
 	})
 }
 
 // Fetch is Developer Hold Token
-export const fetchIsWalletHoldToken = (urlMoralis, apiMoralis) => {
+export const fetchIsWalletHoldToken = (urlMoralis, apiMoralis, signal) => {
 	return fetch(urlMoralis, {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'application/json',
 			'X-API-KEY': apiMoralis,
 		},
+		signal,
 	})
 }
 
 // Fetch token account info.
-export const fetchAccountInfo = (apiHelius, contract) => {
+export const fetchAccountInfo = (apiHelius, contract, signal) => {
 	return fetch(apiHelius, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -67,6 +71,30 @@ export const fetchAccountInfo = (apiHelius, contract) => {
 				},
 			],
 		}),
+		signal,
+	})
+}
+
+// Fetch Burned Liquidity
+export const fetchBurnedLiquidity = (apiHelius, contract, signal) => {
+	return fetch(apiHelius, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			jsonrpc: '2.0',
+			id: 1,
+			method: 'getTokenAccountsByOwner',
+			params: [
+				contract,
+				{
+					programId: 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA',
+				},
+				{
+					encoding: 'jsonParsed',
+				},
+			],
+		}),
+		signal,
 	})
 }
 
@@ -123,6 +151,7 @@ export async function fetchDeveloperWallet(apiBitquery, contract) {
 	}
 }
 
+import { apiHelius } from '../API/api__4holders'
 // Get Time Token Created Ago
 import { convertTimestampToHours } from '../primitiveMethods/holdersMethods4Primitive'
 export async function tokenCreatedAgo(chain, contract) {

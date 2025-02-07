@@ -1,0 +1,150 @@
+.defi__title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-block: 2em;
+	text-align: center;
+}
+
+.defi__section-defiInfo {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	column-gap: 1em;
+}
+
+.defi__bins {
+	position: sticky;
+	top: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	row-gap: 1em;
+	flex-wrap: wrap;
+	flex-basis: 40%;
+}
+
+.defi__bin {
+	width: 30%;
+	font-size: 1.5em;
+	font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	padding: 0.5em 0.5em;
+}
+
+.defi__bin:hover {
+	color: #ffa500;
+}
+
+.binRef--active {
+	color: #ffa500;
+	background-color: rgb(47, 11, 101);
+	box-shadow: 0 0 15px rgba(162, 111, 242, 0.5);
+	border-radius: 20px;
+	transform: scale(1.05);
+}
+
+.defi__pool-list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-basis: 60%;
+	gap: 20px;
+}
+
+.defi__pool-item {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	flex-basis: 47%;
+	padding: 15px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	border: 1px solid #ec6301;
+	box-shadow: 0 0 10px #ec6301;
+	transform: translateX(500%);
+	opacity: 0;
+	transition: all 0.3s ease-in-out;
+}
+
+.bin--active {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.defi__pool-item:hover {
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+.defi__pool-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.defi__pool-label {
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffa500;
+}
+
+.defi__pool-value {
+	font-size: 16px;
+	color: #32cd32;
+	font-size: 1.25em;
+}
+
+.defi__pool-info.address-info .defi__pool-value {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.pool__address-item {
+	cursor: pointer;
+}
+
+.defi__pool-value-copyicon {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	transition: transform 0.1s ease-in-out;
+}
+
+.defi__pool-value .meteora__link {
+	text-decoration: none;
+	color: rgb(255, 162, 0);
+	transition: all 0.3s ease-in-out;
+}
+
+.defi__pool-value .meteora__link:hover {
+	color: rgb(87, 135, 238);
+}
+
+.defi__pool-value-copyicon.copy__icon--active {
+	animation: scaleAnimation 0.3s ease-in-out;
+}
+
+@keyframes scaleAnimation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.defi__pool-value.format__crypto-address {
+	color: #808080;
+	cursor: pointer;
+	transition: transform 0.2s ease-in-out;
+}
+
+.defi__pool-value.format__crypto-address:hover {
+	transform: scale(1.1);
+}

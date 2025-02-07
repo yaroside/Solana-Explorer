@@ -1,27 +1,26 @@
-import React, { useState, createRef } from 'react'
-import raydium from '../../images/servicesLogos/raydium.webp'
-import creator from '../../images/servicesLogos/creator.svg'
+// React Modules
+import React, { createRef } from 'react'
+// Images
+import loadingCircle from '../../images/pointers/spinner-third.svg'
+import copyIcon from '../../images/pointers/copy-regular.svg'
+// Primitive Methods
 import {
 	calculatePercentage,
-	handleTokenAmount,
 	formatCryptoAddress,
 	isAmm,
 	isCreator,
 } from './primitiveMethods/holdersMethods4Primitive'
 import { ammAddresses } from './AMM/AMM'
-import copyIcon from '../../images/copy-regular.svg'
-import '../../style/rugcheck.css'
+// Styles
+import '../../style/TopHoldersBlock.css'
 
-export default function TopHoldersBlock({ whalesInfo, tokenSupply, loading }) {
+export default function TopHoldersBlock({
+	whalesInfo,
+	tokenSupply,
+	developerWallet,
+	loadingWhales,
+}) {
 	const { whalesSupply, whalesList } = whalesInfo
-
-	if (loading) {
-		return <p>Loading top holders...</p>
-	}
-
-	if (!whalesSupply || !whalesList) {
-		return <p>No holder data available.</p>
-	}
 
 	const handleCopyAddress = (fullAddress, iconRef) => {
 		navigator.clipboard.writeText(fullAddress)
@@ -44,48 +43,58 @@ export default function TopHoldersBlock({ whalesInfo, tokenSupply, loading }) {
 				</span>
 			</div>
 			<ul className='top__holders-block--topHolders'>
-				{whalesList.map((holder, index) => {
-					const iconRef = createRef(null)
-					return (
-						<li
-							className={`top__holders-block--topHolders-top_${index + 1}`}
-							key={holder.whaleAddress}
-						>
-							<p className='holder__position'>{index + 1}</p>
-							<p className='holder__address'>
-								{formatCryptoAddress(holder.whaleAddress)}
-								<img
-									className='top__holders copy__icon'
-									src={copyIcon}
-									alt='copy icon'
-									ref={iconRef}
-									onClick={() =>
-										handleCopyAddress(holder.whaleAddress, iconRef)
-									}
-								/>
-							</p>
-							<p className='holder__percent'>
-								{calculatePercentage(holder.whaleTokenAmount, tokenSupply)}
-							</p>
-							<a
-								className='link__tokenAccount'
-								href={`https://solscan.io/account/${holder.tokenAddress}`}
-								target='_blank'
-								rel='noopener noreferrer'
+				{(!loadingWhales &&
+					whalesList &&
+					whalesSupply &&
+					whalesList.map((holder, index) => {
+						const iconRef = createRef(null)
+						const AMM = isAmm(holder.whaleAddress, ammAddresses.raydium)
+						const Creator = isCreator(holder.whaleAddress, developerWallet)
+						return (
+							<li
+								className={
+									`top__holders-block--topHolders-top_${index + 1}` +
+									`${AMM ? ' amm__wallet' : Creator ? ' creator__wallet' : ''}`
+								}
+								key={holder.whaleAddress}
 							>
-								Token Acc
-							</a>
-							<a
-								className='link__ownerAccount'
-								href={`https://solscan.io/account/${holder.whaleAddress}`}
-								target='_blank'
-								rel='noopener noreferrer'
-							>
-								Owner Acc
-							</a>
-						</li>
-					)
-				})}
+								<p className='holder__address'>
+									{formatCryptoAddress(holder.whaleAddress)}
+									<img
+										className='top__holders copy__icon'
+										src={copyIcon}
+										alt='copy icon'
+										ref={iconRef}
+										onClick={() =>
+											handleCopyAddress(holder.whaleAddress, iconRef)
+										}
+									/>
+								</p>
+								<p className='holder__percent'>
+									{calculatePercentage(holder.whaleTokenAmount, tokenSupply)}
+								</p>
+								<a
+									className='link__ownerAccount'
+									href={`https://solscan.io/account/${holder.whaleAddress}`}
+									target='_blank'
+									rel='noopener noreferrer'
+								>
+									Owner
+								</a>
+							</li>
+						)
+					})) || (
+					<li className='top__holders-waiting'>
+						<p className='loading-indicator'>
+							Loading Whales Info...
+							<img
+								className='loadingCircle'
+								src={loadingCircle}
+								alt='loading icon'
+							/>
+						</p>
+					</li>
+				)}
 			</ul>
 		</div>
 	)

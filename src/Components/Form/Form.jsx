@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
-import { chainsData } from './data'
-import '../../style/index.css'
-import arrowDown from '../../images/arrow_down.svg'
-import arrowUp from '../../images/arrow_up.svg'
 
-export default function Form({ setRequestData, setRequestParams }) {
+import { chainsData } from './data'
+
+import '../../style/index.css'
+
+export default function Form({
+	setRequestData,
+	setRequestParams,
+	setSectionActive,
+}) {
 	const [chain, setChain] = useState(chainsData[0])
 	const [menu, setMenu] = useState(false)
 	const [contract, setContract] = useState(null)
@@ -26,6 +30,7 @@ export default function Form({ setRequestData, setRequestParams }) {
 		}
 		setRequestData(requestObject)
 		setRequestParams(requestParams)
+		setSectionActive('Trades')
 	}
 
 	return (
@@ -42,30 +47,6 @@ export default function Form({ setRequestData, setRequestParams }) {
 							src={chain.imgUrl}
 							alt={chain.altImg}
 						/>
-						<span className='chain__selected-name'>{chain.name}</span>
-						<img
-							className='chaind__selected-svg'
-							src={menu ? arrowUp : arrowDown}
-							alt='arrow icon'
-						/>
-					</div>
-					<div className='other__chains'>
-						{chainsData
-							.filter(item => item.id !== chain.id)
-							.map(item => (
-								<div
-									className={`chain__item + ${item.name}`}
-									key={item.id}
-									data-blockchain-id={item.name}
-									onClick={() => {
-										toggleMenu()
-										setChain(item)
-									}}
-								>
-									<img src={item.imgUrl} alt={item.altImg} />
-									<span>{item.name}</span>
-								</div>
-							))}
 					</div>
 				</div>
 				<div className='chain__form'>

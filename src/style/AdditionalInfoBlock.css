@@ -4,13 +4,49 @@
 	row-gap: 1em;
 }
 
+.additional__info-list .additional__info-item .loading-indicator {
+	margin-block: 0;
+}
+
 .additional__info-item {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	column-gap: 1em;
+	row-gap: 1em;
 	background: rgba(27, 16, 44, 0.8);
 	border: 2px solid #00ffccbc;
 	padding: 15px;
 	border-radius: 10px;
 	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 	position: relative;
+}
+
+.additional__info-item.top__holders-waiting {
+	text-align: center;
+}
+
+.loading-indicator {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	font-size: 18px;
+	color: #32cd32;
+}
+
+.loadingCircle {
+	width: 24px;
+	height: 24px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 .additional__info-item-checkList:nth-child(1),
@@ -48,6 +84,10 @@
 	font-size: 1.25em;
 	font-weight: bold;
 	color: #32cd32;
+}
+
+.additional__info-linkError-bigData {
+	color: aliceblue;
 }
 
 .addition__info-snipersSupply,

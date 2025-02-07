@@ -12,7 +12,7 @@ const apiMoralis = {
 
 const apiBitquery = {
 	apiBitquery:
-		'ory_at_JLWq4xwF1mG_GoGAnsJgutH83vsaRrP8f2-kcbwywVE.xRBKaXRPS6h9_TkEFCltEYJG7OVMbh0ISKC6gk1lEio',
+		'ory_at_Jc-fK1rMwaNfgyrcx7Dy--p56v_sOYWyzPnsjzN6Eo0.3vcJy2cEUecx3xetp35_m3xwDiIwPAa5vAnNW7FkUfo	',
 }
 
 export { apiHelius, apiMoralis, apiBitquery }

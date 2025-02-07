@@ -37,15 +37,14 @@
 .chains__params {
 	display: flex;
 	align-items: center;
-	width: 75%;
+	width: 80%;
 	column-gap: 1em;
-	margin-top: 2em;
 	transform-style: preserve-3d;
 	transition: transform 0.5s ease-in-out;
 }
 
 .chain__choose {
-	flex-basis: 15%;
+	flex-basis: 10%;
 	flex-grow: 1;
 	position: relative;
 }
@@ -53,13 +52,10 @@
 .chain__selected {
 	display: flex;
 	align-items: center;
-	column-gap: 1em;
+	justify-content: center;
 	height: 3em;
-	font-size: 1.25em;
 	cursor: pointer;
 	background-color: #212121;
-	color: #ffffff;
-	padding: 0.5em 2em 0.5em 1em;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -93,7 +89,6 @@
 	align-items: flex-start;
 	justify-content: center;
 	row-gap: 2em;
-	padding: 1em;
 	background-color: #161515;
 	color: #ffffff;
 	border-radius: 10px;
@@ -102,7 +97,7 @@
 }
 
 .other__chains--active {
-	top: 125%;
+	top: -10%;
 	left: 0;
 }
 

@@ -1,0 +1,255 @@
+.holders__check {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	column-gap: 2em;
+	padding: 3em 1em 0 1em;
+}
+
+.top__holders-block {
+	flex-basis: 50%;
+	background: rgba(15, 15, 15, 0.9);
+	border: 2px solid #00ffcc;
+	border-radius: 15px;
+	padding: 20px;
+	max-width: 800px;
+	box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+}
+
+.top__holders-waiting {
+	text-align: center;
+}
+
+.top__holders-waiting .loading-indicator {
+	margin-block: 0;
+}
+
+.loading-indicator {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+	font-size: 18px;
+	color: #32cd32;
+}
+
+.loadingCircle {
+	width: 24px;
+	height: 24px;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.top__holders-block--titleBlock {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.top__holders-block--title {
+	display: inline-block;
+	font-size: 2rem;
+	color: #00ffcc;
+	text-shadow: 0 0 3px #00ffcc;
+	text-align: start;
+}
+
+.top__holders-block--percentHolding {
+	font-size: 1.25em;
+	color: #00ffcc;
+	text-shadow: 0 0 1px #00ffcc, 0 0 3px #00ffcc;
+	text-align: start;
+}
+
+.whalesSupply {
+	font-weight: 600;
+	color: #ffc800;
+	text-shadow: 0 0 0;
+}
+
+.percent__supply-top10 {
+	font-style: italic;
+	font-weight: 600;
+	color: #ffcc00;
+	text-shadow: 0 0 0;
+}
+
+.top__holders-block--topHolders {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.top__holders-block--topHolders li {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: linear-gradient(135deg, #1a1a1a, #333333);
+	border: 1px solid #00ffcc;
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 10px;
+	box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.top__holders-block--topHolders li:hover {
+	transform: scale(1.01);
+	box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+}
+
+.top__holders-block--topHolders li.amm__wallet {
+	border: 1px solid rgb(86, 10, 238);
+}
+.top__holders-block--topHolders li.amm__wallet:hover {
+	box-shadow: 0 0 20px rgba(76, 0, 228, 0.6);
+}
+
+.top__holders-block--topHolders li.creator__wallet {
+	border: 1px solid rgb(216, 220, 6);
+}
+.top__holders-block--topHolders li.creator__wallet:hover {
+	box-shadow: 0 0 20px rgba(196, 219, 21, 0.6);
+}
+
+.wallet__icon {
+	position: absolute;
+	left: 7%;
+	width: 32px;
+	height: 32px;
+}
+
+.holder__position {
+	flex-basis: 5%;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #00ffcc;
+	text-shadow: 0 0 5px #00ffcc;
+}
+
+.other__icons {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	left: 6.5%;
+}
+
+.holder__address {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	flex-basis: 30%;
+	text-align: center;
+	font-size: 1rem;
+	color: #ffffff;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: 200px;
+}
+
+.top__holders.copy__icon {
+	cursor: pointer;
+	transition: transform 0.1s ease-in-out;
+}
+
+.top__holders.copy__icon.animate__icon {
+	animation: scaleAnimation 0.3s ease-in-out;
+}
+
+@keyframes scaleAnimation {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(0.8);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.holder__amount {
+	flex-basis: 15%;
+	text-align: center;
+	font-size: 1.2rem;
+	color: #ff00ff;
+	text-shadow: 0 0 5px #ff00ff;
+}
+
+.holder__percent {
+	flex-basis: 10%;
+	text-align: end;
+	font-size: 1.25rem;
+	color: #ffcc00;
+	text-shadow: 0 0 5px #ffcc00;
+}
+
+.link__tokenAccount,
+.link__ownerAccount {
+	flex-basis: 20%;
+	text-align: center;
+	font-size: 0.9rem;
+	text-decoration: none;
+	border-radius: 5px;
+	padding: 5px 10px;
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.link__tokenAccount {
+	color: #00ffcc;
+	border: 1px solid #00ffcc;
+}
+
+.link__ownerAccount {
+	color: #00b7ff;
+	border: 1px solid #00b7ff;
+}
+
+.link__tokenAccount:hover {
+	background: #00ffcc;
+	color: #000000;
+}
+
+.link__ownerAccount:hover {
+	background: #002fff;
+	color: #ffffff;
+}
+
+.additional__info__holders-block {
+	flex-basis: 50%;
+}
+
+.burned__liquidity {
+	position: relative;
+	margin-top: 10px;
+}
+
+.burned__liquidity--progressbar {
+	position: relative;
+	width: 25%;
+	height: 20px;
+	background: #fbd0d0;
+	box-shadow: 0 0 10px rgba(250, 23, 7, 1);
+	border-radius: 20px;
+	overflow: hidden;
+}
+
+.burned__liquidity--burned {
+	height: 100%;
+	background: rgb(250, 23, 7);
+	transition: width 0.3s ease;
+}
+
+.additional__info-text--percentText span {
+	color: #ffcc00;
+}

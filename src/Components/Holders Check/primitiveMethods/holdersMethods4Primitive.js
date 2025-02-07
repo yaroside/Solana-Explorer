@@ -47,34 +47,27 @@ export const formatCryptoAddress = value => {
 
 // Determines if an address matches a specific automated market maker (AMM).
 export const isAmm = (address, ammAddresses) => {
-	return address === ammAddresses.raydium ? 'raydium' : null
+	return address === ammAddresses ? true : false
 }
 
 // Determines if an address is the creator's address.
 export const isCreator = (address, creatorAddress) => {
-	return address === creatorAddress ? 'developer' : null
+	return address === creatorAddress ? true : false
 }
 
 // Converting time into hours
 export const convertTimestampToHours = timestamp => {
 	const dateCreated = new Date(timestamp)
-	const hoursCreated = dateCreated.getUTCHours() + 3
-	const minutesCreated = dateCreated.getMinutes()
-
 	const dateNow = new Date()
-	const hoursNow = dateNow.getUTCHours() + 3
-	const minutesNow = dateNow.getMinutes()
 
-	const totalMinutesCreated = hoursCreated * 60 + minutesCreated
-	const totalMinutesNow = hoursNow * 60 + minutesNow
+	const timeDifferenceMs = dateNow.getTime() - dateCreated.getTime()
+	const hoursDifference = timeDifferenceMs / (1000 * 60 * 60)
 
-	let timeDifferenceMinutes = totalMinutesNow - totalMinutesCreated
+	return hoursDifference >= 11
+}
 
-	if (timeDifferenceMinutes < 0) {
-		timeDifferenceMinutes += 24 * 60
-	}
-
-	const hoursDifference = Math.floor(timeDifferenceMinutes / 60)
-	const isMoreThanOrEqualToTenHours = hoursDifference >= 11
-	return isMoreThanOrEqualToTenHours
+// Calculate burnedLiquidity
+export const burnedLiquidityCalc = (programLiquidity, tokenSupply) => {
+	let result = 100 - Math.round((programLiquidity / tokenSupply) * 100)
+	return result < 100 ? result : 100
 }

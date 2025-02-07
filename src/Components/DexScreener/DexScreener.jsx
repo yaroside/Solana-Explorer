@@ -1,16 +1,32 @@
+// React components
 import React, { useState, useEffect, useRef } from 'react'
-
-import copyIcon from '../images/copy-regular.svg'
-import telegram from '../images/socials/tg.png'
-import www from '../images/socials/www.svg'
-import twitter from '../images/socials/x.jpg'
-import discord from '../images/socials/discord.svg'
-import arrowUp from '../images/arrow-up-solid.svg'
-import arrowDown from '../images/arrow-down-solid.svg'
-import dollar from '../images/dollar-sign-solid.svg'
-
-import '../style/index.css'
-import '../style/normalize.css'
+import Loading from '../Loading Component/Loading'
+// Images
+import copyIcon from '../../images/pointers/copy-regular.svg'
+import telegram from '../../images/socials/tg.png'
+import www from '../../images/socials/www.svg'
+import twitter from '../../images/socials/x.jpg'
+import discord from '../../images/socials/discord.svg'
+import arrowUp from '../../images/pointers/arrow-up-solid.svg'
+import arrowDown from '../../images/pointers/arrow-down-solid.svg'
+import dollar from '../../images/creos/dollar-sign-solid.svg'
+// Styles
+import '../../style/index.css'
+import '../../style/normalize.css'
+// Methods
+import {
+	comparePrices,
+	calculateWidth,
+	transformValue,
+	calculateVol,
+	calculateAll,
+	calculateVolAll,
+	getColorClass,
+	formatCryptoAddress,
+	formatTimestamp,
+	handlerTokenName,
+	calculateHeight,
+} from './Primitive Methods/primitiveMethods'
 
 export default function DexScreener({ requestData, requestParams }) {
 	const { chain, contract } = requestData
@@ -22,6 +38,8 @@ export default function DexScreener({ requestData, requestParams }) {
 	const previousPriceRef = useRef(0)
 	const [currentPrice, setCurrentPrice] = useState(null)
 	const [priceClass, setPriceClass] = useState('')
+	const [isLoading, setIsLoading] = useState(true)
+	const [hasData, setHasData] = useState(true)
 	const apiDomain = 'https://api.dexscreener.com/'
 	const screenerListRef = useRef(null)
 
@@ -42,8 +60,13 @@ export default function DexScreener({ requestData, requestParams }) {
 				setPriceClass(comparePrices(prevPrice, newPrice))
 				previousPriceRef.current = newPrice
 				setCurrentPrice(newPrice)
+
+				setIsLoading(false)
+				setHasData(true)
 			} catch (error) {
 				console.error(`Error fetching data: ${error.message}`)
+				setIsLoading(false)
+				setHasData(false)
 			}
 		}
 		if (chain && contract) {
@@ -56,97 +79,6 @@ export default function DexScreener({ requestData, requestParams }) {
 		}, 5000)
 		return () => clearInterval(intervalId)
 	}, [chain, contract, apiDomain])
-
-	const comparePrices = (previousPrice, currentPrice) => {
-		if (currentPrice > previousPrice) {
-			return 'price-up'
-		} else if (currentPrice < previousPrice) {
-			return 'price-down'
-		}
-		return 'price-unchanged'
-	}
-
-	const calculateWidth = (value1, value2) => {
-		const total = value1 + value2
-		const buysWidth = (value1 / total) * 100
-		const sellsWidth = (value2 / total) * 100
-		return { buysWidth, sellsWidth }
-	}
-
-	const transformValue = value => {
-		const num = parseInt(value, 10)
-		if (isNaN(num)) {
-			return 'Invalid value'
-		}
-
-		if (num >= 1000000000) {
-			return (num / 1000000000).toFixed(3) + 'b'
-		} else if (num >= 1000000) {
-			return (num / 1000000).toFixed(2) + 'm'
-		} else if (num >= 1000) {
-			return (num / 1000).toFixed(1) + 'k'
-		} else {
-			return num.toString()
-		}
-	}
-
-	const calculateVol = (value, arg) => {
-		const num = parseInt(value, 10)
-		if (isNaN(num)) {
-			return num
-		}
-		const onePercent = num / 100
-		const result = onePercent * arg
-		if (result >= 1000000000) {
-			return (result / 1000000000).toFixed(1) + 'b'
-		} else if (result >= 1000000) {
-			return (result / 1000000).toFixed(1) + 'm'
-		} else if (result >= 1000) {
-			return (result / 1000).toFixed(1) + 'k'
-		} else {
-			return result.toFixed(0)
-		}
-	}
-
-	const calculateAll = (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) => {
-		const result = arg1 + arg2 + arg3 + arg4 + arg5 + arg6 + arg7 + arg8
-		if (result >= 1000000000) {
-			return (result / 1000000000).toFixed(1) + 'b'
-		} else if (result >= 1000000) {
-			return (result / 1000000).toFixed(1) + 'm'
-		} else if (result >= 1000) {
-			return (result / 1000).toFixed(1) + 'k'
-		} else {
-			return result.toFixed(0)
-		}
-	}
-
-	const calculateVolAll = (arg1, arg2, arg3, arg4) => {
-		const result = arg1 + arg2 + arg3 + arg4
-		if (result >= 1000000000) {
-			return (result / 1000000000).toFixed(1) + 'b'
-		} else if (result >= 1000000) {
-			return (result / 1000000).toFixed(1) + 'm'
-		} else if (result >= 1000) {
-			return (result / 1000).toFixed(1) + 'k'
-		} else {
-			return result.toFixed(0)
-		}
-	}
-
-	const getColorClass = value => {
-		return value > 0
-			? 'priceChange-positive'
-			: value < 0
-			? 'priceChange-negative'
-			: 'priceChange-neutral'
-	}
-
-	const formatCryptoAddress = value => {
-		const firstPart = value.slice(0, 4)
-		const secondPart = value.slice(-4)
-		return `${firstPart}...${secondPart}`
-	}
 
 	const handleCopyClick = address => {
 		if (document.hasFocus()) {
@@ -164,55 +96,6 @@ export default function DexScreener({ requestData, requestParams }) {
 		}
 	}
 
-	const formatTimestamp = timestamp => {
-		const date = new Date(Number(timestamp))
-		const now = new Date()
-		const diffInSeconds = Math.floor((now - date) / 1000)
-
-		const SECONDS_IN_MINUTE = 60
-		const SECONDS_IN_HOUR = SECONDS_IN_MINUTE * 60
-		const SECONDS_IN_DAY = SECONDS_IN_HOUR * 24
-		const SECONDS_IN_MONTH = SECONDS_IN_DAY * 30
-		const SECONDS_IN_YEAR = SECONDS_IN_DAY * 365
-
-		if (diffInSeconds < SECONDS_IN_HOUR) {
-			const minutes = Math.floor(diffInSeconds / SECONDS_IN_MINUTE)
-			return `${minutes}m`
-		} else if (diffInSeconds < SECONDS_IN_DAY) {
-			const hours = Math.floor(diffInSeconds / SECONDS_IN_HOUR)
-			const minutes = Math.floor(
-				(diffInSeconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE
-			)
-			return `${hours}h ${minutes}m`
-		} else if (diffInSeconds < SECONDS_IN_MONTH) {
-			const days = Math.floor(diffInSeconds / SECONDS_IN_DAY)
-			const hours = Math.floor(
-				(diffInSeconds % SECONDS_IN_DAY) / SECONDS_IN_HOUR
-			)
-			return `${days}d ${hours}h`
-		} else if (diffInSeconds < SECONDS_IN_YEAR) {
-			const months = Math.floor(diffInSeconds / SECONDS_IN_MONTH)
-			const days = Math.floor(
-				(diffInSeconds % SECONDS_IN_MONTH) / SECONDS_IN_DAY
-			)
-			return `${months}mo ${days}d`
-		} else {
-			const years = Math.floor(diffInSeconds / SECONDS_IN_YEAR)
-			const months = Math.floor(
-				(diffInSeconds % SECONDS_IN_YEAR) / SECONDS_IN_MONTH
-			)
-			return `${years}y ${months}mo`
-		}
-	}
-
-	const handlerTokenName = tokenName => {
-		if (tokenName.length > 15) {
-			return tokenName.split('').splice(0, 15).join('') + '...'
-		} else {
-			return tokenName
-		}
-	}
-
 	useEffect(() => {
 		if (screenerListRef.current) {
 			const height = calculateHeight(screenerListRef.current)
@@ -220,8 +103,16 @@ export default function DexScreener({ requestData, requestParams }) {
 		}
 	}, [data, selectedTab])
 
-	const calculateHeight = element => {
-		return element.scrollHeight
+	if (isLoading) {
+		return <Loading text='Loading...' textColor='green' circleDisplay='block' />
+	} else if (!hasData) {
+		return (
+			<Loading
+				text='Failed to Loading Data...'
+				textColor='red'
+				circleDisplay='none'
+			/>
+		)
 	}
 
 	return (
@@ -406,11 +297,11 @@ export default function DexScreener({ requestData, requestParams }) {
 													<ul className='dex__screener-list-finance-priceChange'>
 														<li
 															className={`priceChange-5m ${getColorClass(
-																item.priceChange.m5
+																item?.priceChange?.m5
 															)}`}
 														>
 															<span>5min: </span>
-															{transformValue(item.priceChange.m5)}%
+															{item?.priceChange?.m5 || '0'}%
 														</li>
 														<li
 															className={`priceChange-h1 ${getColorClass(
@@ -418,7 +309,7 @@ export default function DexScreener({ requestData, requestParams }) {
 															)}`}
 														>
 															<span>1hour: </span>
-															{transformValue(item.priceChange.h1)}%
+															{item?.priceChange?.h1 || '0'}%
 														</li>
 														<li
 															className={`priceChange-h6 ${getColorClass(
@@ -426,7 +317,7 @@ export default function DexScreener({ requestData, requestParams }) {
 															)}`}
 														>
 															<span>6hours: </span>
-															{transformValue(item.priceChange.h6)}%
+															{item?.priceChange?.h6 || '0'}%
 														</li>
 														<li
 															className={`priceChange-h24 ${getColorClass(
@@ -434,7 +325,7 @@ export default function DexScreener({ requestData, requestParams }) {
 															)}`}
 														>
 															<span>24hours: </span>
-															{transformValue(item.priceChange.h24)}%
+															{item.priceChange.h24 || '0'}%
 														</li>
 													</ul>
 												</div>
@@ -497,7 +388,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.m5?.buys
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																			<p className='txnsTitle txns__5min'>
@@ -512,7 +403,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.m5?.sells
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																		</div>
@@ -530,14 +421,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{buysWidth.toFixed(1)}%
+																				{isNaN(buysWidth.toFixed(1))
+																					? '0'
+																					: buysWidth.toFixed(1)}
+																				%
 																			</div>
 																			<div
 																				className={
@@ -549,14 +448,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{sellsWidth.toFixed(1)}%
+																				{isNaN(sellsWidth.toFixed(1))
+																					? '0'
+																					: sellsWidth.toFixed(1)}
+																				%
 																			</div>
 																		</div>
 																	</>
@@ -582,7 +489,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.h1?.buys
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																			<p className='txnsTitle txns__h1'>h1:</p>
@@ -595,7 +502,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.h1?.sells
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																		</div>
@@ -613,14 +520,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{buysWidth.toFixed(1)}%
+																				{isNaN(buysWidth.toFixed(1))
+																					? '0'
+																					: buysWidth.toFixed(1)}
+																				%
 																			</div>
 																			<div
 																				className={
@@ -632,14 +547,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{sellsWidth.toFixed(1)}%
+																				{isNaN(sellsWidth.toFixed(1))
+																					? '0'
+																					: sellsWidth.toFixed(1)}
+																				%
 																			</div>
 																		</div>
 																	</>
@@ -665,7 +588,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.h6?.buys
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																			<p className='txnsTitle txns__h6'>h6:</p>
@@ -678,7 +601,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.h6?.sells
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																		</div>
@@ -696,14 +619,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{buysWidth.toFixed(1)}%
+																				{isNaN(buysWidth.toFixed(1))
+																					? '0'
+																					: buysWidth.toFixed(1)}
+																				%
 																			</div>
 																			<div
 																				className={
@@ -715,14 +646,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{sellsWidth.toFixed(1)}%
+																				{isNaN(sellsWidth.toFixed(1))
+																					? '0'
+																					: sellsWidth.toFixed(1)}
+																				%
 																			</div>
 																		</div>
 																	</>
@@ -748,7 +687,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.h24?.buys
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																			<p className='txnsTitle txns__h24'>
@@ -763,7 +702,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																						? transformValue(
 																								item?.txns?.h24?.sells
 																						  )
-																						: ''}
+																						: '0'}
 																				</p>
 																			</div>
 																		</div>
@@ -781,14 +720,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{buysWidth.toFixed(1)}%
+																				{isNaN(buysWidth.toFixed(1))
+																					? '0'
+																					: buysWidth.toFixed(1)}
+																				%
 																			</div>
 																			<div
 																				className={
@@ -800,14 +747,22 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
 																					borderRadius: '5px',
 																				}}
 																			>
-																				{sellsWidth.toFixed(1)}%
+																				{isNaN(sellsWidth.toFixed(1))
+																					? '0'
+																					: sellsWidth.toFixed(1)}
+																				%
 																			</div>
 																		</div>
 																	</>
@@ -834,7 +789,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																			<div className='volume__5min-block-amount'>
 																				{item?.volume?.m5
 																					? transformValue(item?.volume?.m5)
-																					: ''}
+																					: '0'}
 																				$
 																			</div>
 																		</div>
@@ -849,7 +804,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
@@ -861,7 +821,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																							item.volume.m5,
 																							buysWidth
 																					  )
-																					: ''}
+																					: '0'}
 																				$
 																			</div>
 																			<div
@@ -874,7 +834,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
@@ -886,7 +851,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																							item.volume.m5,
 																							sellsWidth
 																					  )
-																					: ''}
+																					: '0'}
 																				$
 																			</div>
 																		</div>
@@ -908,8 +873,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																				h1
 																			</p>
 																			<div className='volume__h1-block-amount'>
-																				{transformValue(item.volume.h1) + '$' ||
-																					'No Data'}
+																				{transformValue(item.volume.h1) || '0'}$
 																			</div>
 																		</div>
 																		<div className='volume__h1-progressbar'>
@@ -923,7 +887,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
@@ -933,7 +902,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				{calculateVol(
 																					item.volume.h1,
 																					buysWidth
-																				) + '$' || 'No Data'}
+																				) || '0'}
+																				$
 																			</div>
 																			<div
 																				className={
@@ -945,7 +915,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
@@ -955,7 +930,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				{calculateVol(
 																					item.volume.h1,
 																					sellsWidth
-																				) + '$' || 'No Data'}
+																				) || '0'}
+																				$
 																			</div>
 																		</div>
 																	</>
@@ -976,8 +952,7 @@ export default function DexScreener({ requestData, requestParams }) {
 																				h6
 																			</p>
 																			<div className='volume__h6-block-amount'>
-																				{transformValue(item.volume.h6) + '$' ||
-																					'No Data'}
+																				{transformValue(item.volume.h6) || '0'}$
 																			</div>
 																		</div>
 																		<div className='volume__h6-progressbar'>
@@ -991,7 +966,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
@@ -1001,7 +981,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				{calculateVol(
 																					item.volume.h6,
 																					buysWidth
-																				) + '$' || 'No Data'}
+																				) || '0'}
+																				$
 																			</div>
 																			<div
 																				className={
@@ -1013,7 +994,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
@@ -1023,7 +1009,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				{calculateVol(
 																					item.volume.h6,
 																					sellsWidth
-																				) + '$' || 'No Data'}
+																				) || '0'}
+																				$
 																			</div>
 																		</div>
 																	</>
@@ -1044,8 +1031,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				h24
 																			</p>
 																			<div className='volume__h24-block-amount'>
-																				{transformValue(item.volume.h24) +
-																					'$' || 'No Data'}
+																				{transformValue(item.volume.h24) || '0'}
+																				$
 																			</div>
 																		</div>
 																		<div className='volume__h24-progressbar'>
@@ -1059,7 +1046,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${buysWidth}%`,
+																					width: `${
+																						buysWidth > 80
+																							? 80
+																							: buysWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(14, 151, 62, 0.9)',
 																					textAlign: 'center',
@@ -1069,7 +1061,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				{calculateVol(
 																					item.volume.h24,
 																					buysWidth
-																				) + '$' || 'No Data'}
+																				) || '0'}
+																				$
 																			</div>
 																			<div
 																				className={
@@ -1081,7 +1074,12 @@ export default function DexScreener({ requestData, requestParams }) {
 																					}`
 																				}
 																				style={{
-																					width: `${sellsWidth}%`,
+																					width: `${
+																						sellsWidth > 80
+																							? 80
+																							: sellsWidth || 50
+																					}%`,
+																					minWidth: '20%',
 																					height: '2em',
 																					background: 'rgba(236, 21, 23, 0.9)',
 																					textAlign: 'center',
@@ -1091,7 +1089,8 @@ export default function DexScreener({ requestData, requestParams }) {
 																				{calculateVol(
 																					item.volume.h24,
 																					sellsWidth
-																				) + '$' || 'No Data'}
+																				) || '0'}
+																				$
 																			</div>
 																		</div>
 																	</>

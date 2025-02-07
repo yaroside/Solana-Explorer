@@ -1,0 +1,44 @@
+-   name pool
+-   link
+-   bin
+-   liquidity
+-   base__fee
+-   max__fee
+-   cumulative__fee__vol
+-   cumulative__trade__vol
+
+response ex: 
+{
+  pairs: [
+    {
+      address: '6wJ7W3oHj7ex6MVFp2o26NSof3aey7U8Brs8E371WCXA',
+      name: 'Fartcoin -SOL',
+      mint_x: '9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump',
+      mint_y: 'So11111111111111111111111111111111111111112',
+      reserve_x: 'CMVrNeYhZnqdbZfQuijgcNvCfvTJN2WKvKSnt2q3HT6N',
+      reserve_y: '5EfbkfLpaz9mHeTN6FnhtN8DTdMGZDRURYcsQ1f1Utg6',
+      reserve_x_amount: 6811910021176,
+      reserve_y_amount: 2313379006672,
+      bin_step: 20,
+      base_fee_percentage: '0.2',
+      max_fee_percentage: '1.18',
+      protocol_fee_percentage: '5',
+      liquidity: '3798037.6345688594',
+      reward_mint_x: '11111111111111111111111111111111',
+      reward_mint_y: '11111111111111111111111111111111',
+      fees_24h: 127819.85640324376,
+      today_fees: 122558.34442885948,
+      trade_volume_24h: 59611179.18086776,
+      cumulative_trade_volume: '1675686813.1100',
+      cumulative_fee_volume: '3814690.7300',
+      current_price: 0.0025019820109904232,
+      apr: 3.3654183739480885,
+      apy: 17659155.036164068,
+      farm_apr: 0,
+      farm_apy: 0,
+      hide: false,
+      is_blacklisted: false,
+      fees: [Object],
+      fee_tvl_ratio: [Object]
+    }]
+}

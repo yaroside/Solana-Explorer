@@ -1,224 +1,171 @@
-.holders__check {
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	padding: 3em 4.5em 0 4.5em;
-}
-
-.top__holders-block {
-	flex-basis: 50%;
-	background: rgba(15, 15, 15, 0.9);
-	border: 2px solid #00ffcc;
-	border-radius: 15px;
-	padding: 20px;
-	max-width: 800px;
-	box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
-}
-
-.top__holders-block--titleBlock {
+.loading-indicator--rugcheck {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 20px;
+	justify-content: center;
+	margin-top: 2em;
+	text-align: center;
+	column-gap: 1em;
+	font-size: 1.5em;
+	color: #32cd32;
 }
 
-.top__holders-block--title {
-	display: inline-block;
-	font-size: 2rem;
-	color: #00ffcc;
-	text-shadow: 0 0 3px #00ffcc;
-	text-align: start;
-}
-
-.top__holders-block--percentHolding {
-	margin-left: 2em;
-	font-size: 1.5rem;
-	color: #00ffcc;
-	text-shadow: 0 0 1px #00ffcc, 0 0 3px #00ffcc;
-	text-align: start;
-}
-
-.whalesSupply {
-	color: #ffc800;
-	font-size: 1.25em;
-	text-shadow: 0 0 0;
-}
-
-.percent__supply-top10 {
-	font-size: 1.75em;
-	font-style: italic;
-	font-weight: 600;
-	color: #ffcc00;
-	text-shadow: 0 0 0;
-}
-
-.top__holders-block--topHolders {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-}
-
-.top__holders-block--topHolders li {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	background: linear-gradient(135deg, #1a1a1a, #333333);
-	border: 1px solid #00ffcc;
-	border-radius: 10px;
-	padding: 15px;
-	margin-bottom: 10px;
-	box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.top__holders-block--topHolders li:hover {
-	transform: scale(1.01);
-	box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
-}
-
-.top__holders-block--topHolders li.amm__wallet {
-	border: 1px solid rgb(86, 10, 238);
-}
-.top__holders-block--topHolders li.amm__wallet:hover {
-	box-shadow: 0 0 20px rgba(76, 0, 228, 0.6);
-}
-
-.top__holders-block--topHolders li.creator__wallet {
-	border: 1px solid rgb(216, 220, 6);
-}
-.top__holders-block--topHolders li.creator__wallet:hover {
-	box-shadow: 0 0 20px rgba(196, 219, 21, 0.6);
-}
-
-.holder__position {
-	flex-basis: 5%;
-	font-size: 1.5rem;
-	font-weight: bold;
-	color: #00ffcc;
-	text-shadow: 0 0 5px #00ffcc;
-}
-
-.other__icons {
+.loadingCircle {
 	width: 24px;
 	height: 24px;
-	position: absolute;
-	left: 6.5%;
+	animation: spin 1s linear infinite;
 }
 
-.holder__address {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	flex-basis: 25%;
-	text-align: center;
-	font-size: 1rem;
-	color: #ffffff;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	max-width: 200px;
-}
-
-.top__holders.copy__icon {
-	cursor: pointer;
-	transition: transform 0.1s ease-in-out;
-}
-
-.top__holders.copy__icon.animate__icon {
-	animation: scaleAnimation 0.3s ease-in-out;
-}
-
-@keyframes scaleAnimation {
+@keyframes spin {
 	0% {
-		transform: scale(1);
-	}
-	50% {
-		transform: scale(0.8);
+		transform: rotate(0deg);
 	}
 	100% {
-		transform: scale(1);
+		transform: rotate(360deg);
 	}
 }
 
-.holder__amount {
-	flex-basis: 15%;
-	text-align: center;
-	font-size: 1.2rem;
-	color: #ff00ff;
-	text-shadow: 0 0 5px #ff00ff;
+.rug-check-wrapper {
+	display: flex;
+	align-items: flex-start;
+	padding: 50px 25px 50px 25px;
+	width: 100%;
 }
 
-.holder__percent {
-	flex-basis: 10%;
-	text-align: end;
-	font-size: 1.25rem;
-	color: #ffcc00;
-	text-shadow: 0 0 5px #ffcc00;
+.rug-check-left {
+	width: 50%;
 }
 
-.link__tokenAccount,
-.link__ownerAccount {
-	flex-basis: 20%;
-	text-align: center;
-	font-size: 0.9rem;
-	text-decoration: none;
-	border-radius: 5px;
-	padding: 5px 10px;
-	transition: background 0.3s ease, color 0.3s ease;
+.rug-check-left ul {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1.5em;
 }
 
-.link__tokenAccount {
-	color: #00ffcc;
-	border: 1px solid #00ffcc;
-}
-
-.link__ownerAccount {
-	color: #00b7ff;
-	border: 1px solid #00b7ff;
-}
-
-.link__tokenAccount:hover {
-	background: #00ffcc;
-	color: #000000;
-}
-
-.link__ownerAccount:hover {
-	background: #002fff;
-	color: #ffffff;
-}
-
-.additional__info__holders-block {
-	flex-basis: 50%;
-}
-
-.additional__info-item {
+.rug-check-right {
+	width: 50%;
 	display: flex;
 	align-items: center;
-	column-gap: 0.5em;
+	justify-content: center;
 }
 
-.burned__liquidity {
-	position: relative;
-	margin-top: 10px;
+.risk-item {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: column;
+	justify-content: flex-start;
+	row-gap: 1em;
+	padding: 1em;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.burned__liquidity--progressbar {
-	position: relative;
-	width: 25%;
-	height: 20px;
-	background: #fbd0d0;
-	box-shadow: 0 0 10px rgba(250, 23, 7, 1);
-	border-radius: 20px;
-	overflow: hidden;
+.risk-item.danger {
+	box-shadow: 0 0 15px rgb(245, 57, 57);
 }
 
-.burned__liquidity--burned {
-	height: 100%;
-	background: rgb(250, 23, 7);
-	transition: width 0.3s ease;
+.risk-item.warn {
+	box-shadow: 0 0 15px rgb(245, 190, 88);
 }
 
-.additional__info-text--percentText span {
-	color: #ffcc00;
+.risk-item.empty-item {
+	flex-basis: 50%;
+	justify-self: center;
+	font-size: 1.5em;
+	color: rgb(161, 244, 19);
+}
+
+.risk-item.empty-item strong {
+	display: inline-block;
+	margin-inline: auto;
+}
+
+.risk-title {
+	font-size: 1.5em;
+}
+
+.warn__title {
+	color: rgb(245, 190, 88);
+}
+
+.danger__title {
+	color: rgb(245, 57, 57);
+}
+
+.risk-desc {
+	font-size: 1.25em;
+	color: aliceblue;
+}
+
+.final-risk {
+	text-align: center;
+	font-weight: bold;
+	padding: 1em;
+	border-radius: 5px;
+	color: aliceblue;
+	font-size: 18px;
+}
+
+.risk-analysis {
+	display: flex;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.final-risk.danger {
+	background-color: rgb(245, 57, 57);
+	color: black;
+}
+
+.risk-analysis.danger .rugcheck__link {
+	padding: 0.5em 1em;
+	outline: 1px solid black;
+	color: black;
+}
+
+.final-risk.warn {
+	background-color: rgb(245, 190, 88);
+	color: black;
+}
+
+.risk-analysis.empty-risk {
+	padding: 2em;
+	background-color: rgb(161, 244, 19);
+	color: black;
+}
+
+.risk-analysis .rugcheck__link {
+	padding: 0.5em 1em;
+	outline: 1px solid black;
+	color: black;
+	transition: all 0.3s ease-in-out;
+}
+
+.final-risk.good {
+	background-color: rgb(161, 244, 19);
+	color: black;
+}
+
+.risk-analysis--status {
+	font-size: 1.5em;
+	font-style: italic;
+}
+
+.final-risk.empty-risks {
+	background-color: rgb(161, 244, 19);
+	color: black;
+}
+
+.final-risk.empty-risks .rugcheck__link {
+	padding: 0.5em 1em;
+	outline: 1px solid black;
+	text-decoration: none;
+	color: black;
+	transition: all 0.3s ease-in-out;
+}
+
+.risk-analysis .rugcheck__link:hover,
+.final-risk.empty-risks .rugcheck__link:hover {
+	background-color: rgb(62, 47, 227);
+	color: aliceblue;
+	outline: none;
 }
