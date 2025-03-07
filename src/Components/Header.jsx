@@ -3,7 +3,7 @@ import logo from '../images/logo.svg'
 import '../style/header.css'
 
 export default function Header() {
-	const [displayText, setDisplayText] = useState('The Watcher')
+	const [displayText, setDisplayText] = useState('Solana Explorer')
 
 	return (
 		<>

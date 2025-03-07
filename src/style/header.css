@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 1rem;
+	padding: 1em 0 1em 4.5em;
 	color: #ffffff;
 	transition: background-color 0.3s ease;
 }
@@ -10,11 +10,10 @@
 .header__title {
 	display: inline-block;
 	position: relative;
-	font-size: 2rem;
+	font-size: 1.25rem;
 	font-weight: bold;
 	color: #fff;
 	overflow: hidden;
-	padding-inline: 1em;
 }
 
 .light {
@@ -23,43 +22,15 @@
 	animation: light 2s linear infinite;
 }
 
-.light::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: -100%;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(
-		90deg,
-		transparent,
-		rgba(192, 192, 192, 0.5),
-		transparent
-	);
-	animation: running-light 10s linear infinite;
-}
-
-@keyframes running-light {
-	0% {
-		left: -100%;
-	}
-	20% {
-		left: 100%;
-	}
-	100% {
-		left: 200%;
-	}
-}
-
 @keyframes light {
 	0% {
-		text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 	}
 	50% {
-		text-shadow: 0 0 20px rgba(255, 255, 255, 1);
+		text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
 	}
 	100% {
-		text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
 	}
 }
 
@@ -70,6 +41,7 @@
 	height: 3rem;
 	animation: rotate-jump 5s infinite;
 	perspective: 1000px;
+	margin-left: 1em;
 }
 
 @keyframes rotate-jump {

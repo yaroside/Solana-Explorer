@@ -50,8 +50,8 @@
 	justify-content: space-between;
 	background: linear-gradient(135deg, #2e2e34, #3d3d45, #4a4a55);
 	border-radius: 40px;
-	box-shadow: 0 0 20px rgba(128, 128, 128, 0.25),
-		inset 0 0 15px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 0 20px rgba(128, 128, 128, 0.1),
+		inset 0 0 15px rgba(0, 0, 0, 0.2);
 	border: 1px solid rgba(192, 192, 192, 0.1);
 }
 
@@ -59,8 +59,8 @@
 	position: relative;
 	flex-basis: 50%;
 	text-align: center;
-	font-size: 1.2em;
-	font-weight: 700;
+	font-size: 1.1em;
+	font-weight: 500;
 	color: #dcdcdc;
 	z-index: 2;
 	background: transparent;
@@ -85,7 +85,7 @@
 	height: 100%;
 	width: 50%;
 	background: linear-gradient(135deg, #7c7c91, #54546f);
-	box-shadow: 0 0 20px rgba(128, 128, 192, 0.5), 0 0 30px rgba(64, 64, 96, 0.6);
+	box-shadow: 0 0 10px rgba(128, 128, 192, 0.1), 0 0 20px rgba(64, 64, 96, 0.1);
 	border-radius: 30px;
 	transition: all 0.3s ease-in-out;
 	z-index: 1;
@@ -214,8 +214,6 @@
 	flex-wrap: wrap;
 	column-gap: 1em;
 	border-radius: 12px;
-	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5),
-		inset 0px 4px 6px rgba(255, 255, 255, 0.05);
 	color: #b9bfc9;
 	width: 100%;
 }
@@ -232,7 +230,7 @@
 	justify-content: space-between;
 	align-items: center;
 	background: black;
-	transition: background 0.3s ease, transform 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .dex__screener-list-finance-priceChange li:hover {
@@ -241,12 +239,12 @@
 
 .priceChange-positive {
 	background: linear-gradient(145deg, #1f4021, #2a5a2f);
-	box-shadow: 0px 8px 20px rgba(0, 255, 100, 0.5);
+	box-shadow: 0px 8px 10px rgba(0, 255, 100, 0.25);
 }
 
 .priceChange-negative {
 	background: linear-gradient(145deg, #401f1f, #5a2f2f);
-	box-shadow: 0px 8px 20px rgba(255, 50, 50, 0.5);
+	box-shadow: 0px 8px 10px rgba(255, 50, 50, 0.25);
 }
 
 .priceChange-neutral {
@@ -399,6 +397,7 @@
 .social__telegram-link,
 .social__Website-link,
 .social__discord-link,
+.social__tiktok-link,
 .dexscreener__link {
 	display: flex;
 	align-items: center;

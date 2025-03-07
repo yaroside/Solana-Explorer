@@ -2,8 +2,9 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	margin-top: 1em;
+	padding-left: 4.5em;
 }
 
 .explorer__title {
@@ -37,14 +38,13 @@
 .chains__params {
 	display: flex;
 	align-items: center;
-	width: 80%;
+	width: 90%;
 	column-gap: 1em;
 	transform-style: preserve-3d;
 	transition: transform 0.5s ease-in-out;
 }
 
 .chain__choose {
-	flex-basis: 10%;
 	flex-grow: 1;
 	position: relative;
 }
@@ -53,11 +53,15 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 3em;
+	height: 3.5em;
 	cursor: pointer;
 	background-color: #212121;
 	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+	transition: all 0.3s ease-in-out;
+}
+
+.chain__selected[data-chain-id='Solana']:hover {
+	box-shadow: 0 0 10px rgba(171, 106, 240, 0.5);
 }
 
 .chain__selected-logo {
@@ -196,11 +200,15 @@
 	color: #ffffff;
 	padding: 1em;
 	border-radius: 10px;
+	transition: all 0.3s ease-in-out;
+}
+
+.chain__form-adress:focus {
 	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .chain__btn {
-	flex-basis: 25%;
+	flex-basis: 10%;
 	flex-grow: 1;
 }
 
@@ -215,27 +223,13 @@
 	background-color: #212121;
 	color: #ffffff;
 	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 	cursor: pointer;
 	overflow: hidden;
-	transition: background-color 0.3s ease;
+	transition: all 0.3s ease;
 }
 
-.chain__form-btn::after {
-	content: url(../images/arrow-up-right-from-square.svg);
-	position: absolute;
-	width: 20px;
-	height: 20px;
-	top: 50%;
-	right: -100%;
-	transform: translate(0, -50%);
-	opacity: 0;
-	transition: all 0.3s ease-in-out;
-}
-
-.chain__form-btn:hover::after {
-	opacity: 1;
-	right: 15%;
+.chain__form-btn:hover {
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .chain__form-btn:hover::before {

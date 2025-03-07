@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 import { chainsData } from './data'
 
@@ -11,7 +11,8 @@ export default function Form({
 }) {
 	const [chain, setChain] = useState(chainsData[0])
 	const [menu, setMenu] = useState(false)
-	const [contract, setContract] = useState(null)
+	const [contract, setContract] = useState('')
+	const inputRef = useRef(null)
 
 	const toggleMenu = () => {
 		const menu = document.querySelector('.other__chains')
@@ -21,6 +22,13 @@ export default function Form({
 
 	const dataRequest = e => {
 		e.preventDefault()
+
+		if (contract.split('').length < 31 || contract.split('').length > 44) {
+			inputRef.current.style.boxShadow = '0 0 10px rgba(255, 43, 43, 0.5)'
+			setTimeout(() => (inputRef.current.style.boxShadow = '0 0 0'), 2000)
+			return
+		}
+
 		const requestObject = {
 			chain: chain.name.toLowerCase(),
 			contract: contract,
@@ -55,6 +63,7 @@ export default function Form({
 						type='text'
 						placeholder={`Example: ` + chain.placeholder}
 						onChange={e => setContract(e.target.value)}
+						ref={inputRef}
 					/>
 				</div>
 				<div className='chain__btn'>

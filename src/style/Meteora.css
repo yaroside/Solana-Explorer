@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.pools-container {
+	position: relative;
+	padding-bottom: 1em;
+	display: flex;
+	justify-content: space-between;
+	max-height: calc((100vh - 80px) - 40px);
+	height: calc((100vh - 80px) - 40px);
+	color: #ff5722;
+	background: linear-gradient(180deg, #521600, #550630);
+	border-radius: 10px;
+	transition: all 0.3s ease-in-out;
+	font-family: 'Orbitron', sans-serif;
+}
+
+.pools_leftside {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	position: sticky;
+	top: 0;
+	left: 0;
+	height: calc(100% + 32px);
+	flex-basis: 8%;
+}
+
+.pools_rightside {
+	flex-basis: 95%;
+}
+
+.pools-container::-webkit-scrollbar {
+	width: 0.5em;
+	padding-right: 2em;
+}
+
+.pools-container::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, #ff4500, #ff1493);
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+	transition: 0.3s ease-in-out;
+}
+
+.pools-container::-webkit-scrollbar-track {
+	background: rgba(26, 10, 43, 0.8);
+	border-radius: 10px;
+}
+
+.pools-container--active {
+	transform: translateX(0);
+	overflow-y: auto;
+}
+
+.pools-container--disabled {
+	transform: translateX(100%);
+	overflow-y: hidden;
+}
+
+.pools-header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 1em;
+}
+
+.pools_rightside {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pools-titleGlobal {
+	margin-block: 1em;
+}
+
+.pools-item-letter {
+	font-weight: 600;
+	font-size: 1.25em;
+}
+
+.pools-meteoraImage {
+	width: 3em;
+	height: 3em;
+	object-fit: cover;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.pools-arrow {
+	width: 2em;
+	height: 2em;
+	cursor: pointer;
+	border-radius: 50%;
+	background-color: black;
+}
+
+.pools-arrow.pools-arrow {
+	transform: rotate(-90deg);
+}
+
+.pools-list {
+	font-family: 'Space Mono', serif;
+	font-weight: 400;
+	font-style: normal;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	row-gap: 2em;
+	width: 80%;
+}
+
+.pools-list > li {
+	display: flex;
+	flex-direction: column;
+	row-gap: 1em;
+	width: 100%;
+	padding: 1em;
+	font-size: 1em;
+	border-radius: 10px;
+	border: 2px solid #ff4500;
+	transition: 0.3s ease-in-out;
+}
+
+.pool_item {
+	position: relative;
+}
+
+.pool_meteoraLink {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	width: 3em;
+	height: 3em;
+	border-radius: 50%;
+	object-fit: cover;
+	background-color: aliceblue;
+}
+
+.pool_meteoraLink::after {
+	content: url(../images/pointers/arrow-up-right-from-square-solid.svg);
+	position: absolute;
+	width: 1.5em;
+	height: 1.5em;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.pool_name {
+	font-size: 1.25em;
+}
+
+.pool_binstep-title {
+	color: #36feee;
+}
+
+.pool__CAmem {
+	position: relative;
+	cursor: pointer;
+}
+
+.pool_CAmem-title {
+	color: rgb(241, 205, 86);
+}
+
+.pool__CAmem::after {
+	content: url(../images/pointers/copy-regular.svg);
+	position: absolute;
+	top: 0;
+	left: 55%;
+	width: 1em;
+	height: 1em;
+	cursor: pointer;
+}
+
+.pool_tvl-title {
+	color: #21f321;
+}
+
+.pool_fee-title {
+	color: orange;
+}
+
+.addInfo-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1em;
+}
+
+.pool-block {
+	flex-basis: 48%;
+	padding: 1em;
+	border: 1px solid aliceblue;
+	border-radius: 10px;
+}
+
+.pool_time {
+	font-weight: 500;
+	color: aliceblue;
+	margin-right: 0.5em;
+}
+
+.pool_title {
+	font-size: 1.25em;
+	color: violet;
+}
+
+.pool_fees-item,
+.pool_percent-item,
+.pool_profit-item,
+.pool_volume-item {
+	font-size: 1.05em;
+	margin-top: 0.75em;
+}

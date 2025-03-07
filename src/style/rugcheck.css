@@ -27,6 +27,7 @@
 .rug-check-wrapper {
 	display: flex;
 	align-items: flex-start;
+	column-gap: 2em;
 	padding: 50px 25px 50px 25px;
 	width: 100%;
 }
@@ -92,7 +93,7 @@
 }
 
 .risk-desc {
-	font-size: 1.25em;
+	font-size: 1em;
 	color: aliceblue;
 }
 

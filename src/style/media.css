@@ -1,0 +1,36 @@
+@media (max-width: 1870px) {
+	.pools_leftside {
+		flex-basis: 5%;
+	}
+	.token__info {
+		flex-basis: 90%;
+	}
+	.meteora__section {
+		flex-basis: 0;
+	}
+	.pools-container {
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1000;
+		height: 100vh;
+		max-height: 100vh;
+		width: 1000px;
+	}
+	.pools-container--active {
+		transform: translateX(0%);
+	}
+	.pools-container--disabled {
+		transform: translateX(calc(100% - 3em));
+	}
+	.pools-arrow {
+		left: 1%;
+	}
+	.pools-title {
+		top: 25%;
+		left: 2%;
+	}
+	.pool__CAmem::after {
+		left: 35%;
+	}
+}

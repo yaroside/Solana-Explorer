@@ -89,7 +89,7 @@ export default function Holders({ requestData }) {
 					whaleTokenAmount: whaleTokenAmount,
 				}
 				whalesInfoArray.push(whaleObject)
-				await delay(175)
+				await delay(200)
 			}
 			setDataCrypto(prev => ({
 				...prev,

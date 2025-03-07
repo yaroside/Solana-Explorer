@@ -7,6 +7,7 @@ import telegram from '../../images/socials/tg.png'
 import www from '../../images/socials/www.svg'
 import twitter from '../../images/socials/x.jpg'
 import discord from '../../images/socials/discord.svg'
+import tiktok from '../../images/socials/tik tok.png'
 import arrowUp from '../../images/pointers/arrow-up-solid.svg'
 import arrowDown from '../../images/pointers/arrow-down-solid.svg'
 import dollar from '../../images/creos/dollar-sign-solid.svg'
@@ -185,34 +186,38 @@ export default function DexScreener({ requestData, requestParams }) {
 																	const socialType = item.type
 																	const socialLink = item.url
 																	return (
-																		<a
-																			className={`social__${socialType}-link`}
-																			style={{ textAlign: 'center' }}
-																			href={socialLink}
-																			target='_blank'
-																			rel='noopener noreferrer'
-																			key={`social__${index}`}
-																		>
-																			<img
-																				className={`social__${socialType}-img`}
-																				style={{
-																					width: '24px',
-																					height: '24px',
-																					borderRadius: '50%',
-																					marginInline: '0.5em',
-																				}}
-																				src={
-																					socialType === 'twitter'
-																						? twitter
-																						: socialType === 'telegram'
-																						? telegram
-																						: socialType === 'discord'
-																						? discord
-																						: ''
-																				}
-																				alt={`${socialType} + ' logo' `}
-																			/>
-																		</a>
+																		<React.Fragment key={index}>
+																			<a
+																				className={`social__${socialType}-link`}
+																				style={{ textAlign: 'center' }}
+																				href={socialLink}
+																				target='_blank'
+																				rel='noopener noreferrer'
+																				key={`social__${index}`}
+																			>
+																				<img
+																					className={`social__${socialType}-img`}
+																					style={{
+																						width: '24px',
+																						height: '24px',
+																						borderRadius: '50%',
+																						marginInline: '0.5em',
+																					}}
+																					src={
+																						socialType === 'twitter'
+																							? twitter
+																							: socialType === 'telegram'
+																							? telegram
+																							: socialType === 'discord'
+																							? discord
+																							: socialType === 'tiktok'
+																							? tiktok
+																							: ''
+																					}
+																					alt={`${socialType} + ' logo' `}
+																				/>
+																			</a>
+																		</React.Fragment>
 																	)
 																})}
 															{item?.info?.websites &&
