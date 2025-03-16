@@ -5,9 +5,6 @@
 	.token__info {
 		flex-basis: 90%;
 	}
-	.meteora__section {
-		flex-basis: 0;
-	}
 	.pools-container {
 		position: absolute;
 		right: 0;

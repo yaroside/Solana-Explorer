@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import {
 	caformating,
 	formatBigNumbers,
@@ -45,6 +45,7 @@ export default function MeteoraPools({ pools, loading, time }) {
 					<br />
 					A
 					<br />
+					<br />
 					D
 					<br />
 					L
@@ -52,6 +53,7 @@ export default function MeteoraPools({ pools, loading, time }) {
 					M
 					<br />
 					M
+					<br />
 					<br />
 					P
 					<br />
@@ -115,16 +117,6 @@ export default function MeteoraPools({ pools, loading, time }) {
 									{formatBigNumbers(pool.base_fee_percentage)} %
 								</p>
 								<ul className='addInfo-list'>
-									<li className='pool_fees-block pool-block'>
-										<p className='pool_fees-title pool_title'>Fees $: </p>
-										<p className='pool_fees-item'>
-											<span className='pool_time'>1h:</span>{' '}
-											{formatBigNumbers(pool.fees.hour_1)}
-											<br />
-											<span className='pool_time'>24h:</span>{' '}
-											{formatBigNumbers(pool.fees.hour_24)}
-										</p>
-									</li>
 									<li className='pool_percent-block pool-block'>
 										<p className='pool_percent-title pool_title'>Percent %: </p>
 										<p className='pool_percent-item'>
@@ -135,9 +127,9 @@ export default function MeteoraPools({ pools, loading, time }) {
 											{formatBigNumbers(pool.fee_tvl_ratio.hour_24)}
 										</p>
 									</li>
-									<li className='pool_profit-block pool-block'>
-										<p className='pool_profit-title pool_title'>Profit $: </p>
-										<p className='pool_profit-item'>
+									<li className='pool_fees-block pool-block'>
+										<p className='pool_fees-title pool_title'>Fees $: </p>
+										<p className='pool_fees-item'>
 											<span className='pool_time'>1h:</span>{' '}
 											{formatBigNumbers(pool.fees.hour_1)}
 											<br />

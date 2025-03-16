@@ -185,7 +185,7 @@
 .addInfo-list {
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	gap: 1em;
 }
@@ -210,7 +210,6 @@
 
 .pool_fees-item,
 .pool_percent-item,
-.pool_profit-item,
 .pool_volume-item {
 	font-size: 1.05em;
 	margin-top: 0.75em;

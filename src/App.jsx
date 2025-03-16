@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 import DexScreenerLogo from './images/servicesLogos/DexScreenerLogo.svg'
 import RugCheckLogo from './images/servicesLogos/rugcheck.jpg'
@@ -22,7 +22,6 @@ export default function App() {
 	const [requestData, setRequestData] = useState({})
 	const [requestParams, setRequestParams] = useState({})
 	const [sectionActive, setSectionActive] = useState('')
-	const bubbleMapsRef = useRef(null)
 
 	const windowSize = window.innerWidth
 
@@ -32,13 +31,6 @@ export default function App() {
 
 	const handleClickSection = service => {
 		setSectionActive(service)
-
-		if (service === 'BubbleMaps' && bubbleMapsRef.current) {
-			bubbleMapsRef.current.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start',
-			})
-		}
 	}
 
 	return (
@@ -173,7 +165,6 @@ export default function App() {
 												? 'request__result--active'
 												: ''
 										}`}
-										ref={bubbleMapsRef}
 									>
 										<BubbleMaps requestData={requestData} />
 									</section>

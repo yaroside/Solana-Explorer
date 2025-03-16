@@ -6,11 +6,7 @@ import poolsFetch from './Parsers/poolsFetch'
 const Meteora = React.memo(() => {
 	const { pools, loading, time } = poolsFetch()
 
-	return (
-		<div className='meteora__pools'>
-			<MeteoraPools pools={pools} loading={loading} time={time} />
-		</div>
-	)
+	return <MeteoraPools pools={pools} loading={loading} time={time} />
 })
 
 export default Meteora
