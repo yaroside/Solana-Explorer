@@ -1,10 +1,10 @@
 This is Solana blockchain audit & pool parsing tool designed to analyze and verify smart contracts and liquidity pools in the Meteora ecosystem. The project leverages multiple API services to provide real-time data and insights for traders, developers, and auditors.
 
-✨ Features
--🔹 Smart Contract Auditing – Analyze contract security, tokenomics, and historical transactions.
--🔹 Meteora Pool Parsing – Retrieve liquidity pools with key metrics such as TVL, fees, volume, and profit percentage.
--🔹 Multi-API Support – Integrates with Dexscreener, Moralis, Helius, Bitquery, BubbleMaps, RugCheck, and Meteora.
--🔹 Real-Time Data – Fetches live data from multiple sources for accurate analysis.
+✨ Features:
+- Smart Contract Auditing – Analyze contract security, tokenomics, and historical transactions.
+- Meteora Pool Parsing – Retrieve liquidity pools with key metrics such as TVL, fees, volume, and profit percentage. 
+- Multi-API Support – Integrates with Dexscreener, Moralis, Helius, Bitquery, BubbleMaps, RugCheck, and Meteora. 
+- Real-Time Data – Fetches live data from multiple sources for accurate analysis. 
 
 🛠 API's:
 
